@@ -37,7 +37,7 @@ function chatBot(){
 function speechToText(){
     alert("Je suis speech to text")
     //1ère partie déclencher l'API Speech To Text
-    recognition.start();
+     recognition.start();
 
 }
 

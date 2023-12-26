@@ -44,7 +44,7 @@ def analyse_endpoint(analyse_input: AnalyseTexteInput):
     #miniscule
     texte=(analyse_input.texte).lower()
     #ponctuation
-    texte = ' '.join([char for char in texte if char not in string.punctuation])
+    # texte = ' '.join([char for char in texte if char not in string.punctuation])
     #texte.translate(str.maketrans("", "", string.punctuation))
 
     #erreur:Faute d'orthographe
