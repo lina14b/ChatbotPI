@@ -7,6 +7,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 import string
+import openai
 # nltk.download('punkt')
 # nltk.download('stopwords')
 # nltk.download('wordnet')
@@ -66,8 +67,19 @@ def analyse_endpoint(analyse_input: AnalyseTexteInput):
     return {"msg": response}
 
 def Query_OpenIA(query:str):
-    print(query)
-    msg="Hello there "+query
+    
+
+    openai.api_key = ''#Please add the API key sent via email here
+    conversation = "You are a computer science university teacher spcialized in AI, machine learning and deeplearning..explain "+ query
+     
+    response = openai.Completion.create(
+    engine="text-davinci-003",  
+    prompt=conversation,
+    max_tokens=150
+    )
+
+
+    msg = response['choices'][0]['text']
     return msg
 
 if __name__ == "__main__":
