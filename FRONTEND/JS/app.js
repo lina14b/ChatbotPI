@@ -1,7 +1,8 @@
-var BTN=document.querySelector("button")
+var BTN=document.querySelector("#bText")
 var TEXTAREA=document.querySelector("#textSpeech")
 var DIV=document.querySelector("#reponse_msg")
 var BTN_MIC=document.querySelector("#bMic")
+var BTN_SP=document.querySelector("#bSpeak")
 //var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var recognition = new webkitSpeechRecognition();
 recognition.continuous = false;
@@ -27,6 +28,12 @@ function chatBot(){
     .then(reponse=>{
         reponse.json()
         .then(data=>{
+            BTN_SP.style.display=""
+            // BTN_SP.addEventListener("click",texteToSpeech(data.msg)) 
+            BTN_SP.addEventListener("click", function() {
+                texteToSpeech(data.msg);
+            });
+            
             console.log(data.msg)
             // DIV.innerHTML=data.msg
             var i=0;
@@ -48,12 +55,16 @@ function chatBot(){
     })
 }
 function speechToText(){
-    alert("Je suis speech to text")
+    // alert("Je suis speech to text")
     //1ère partie déclencher l'API Speech To Text
      recognition.start();
 
 }
+function texteToSpeech(texte)
+{let utterance = new SpeechSynthesisUtterance(texte);
+  speechSynthesis.speak(utterance);
 
+}
 
 recognition.onresult = function(event) {
 
