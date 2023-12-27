@@ -3,7 +3,7 @@ var TEXTAREA=document.querySelector("#textSpeech")
 var DIV=document.querySelector("#reponse_msg")
 var BTN_MIC=document.querySelector("#bMic")
 var BTN_SP=document.querySelector("#bSpeak")
-//var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+
 var recognition = new webkitSpeechRecognition();
 recognition.continuous = false;
 recognition.lang = 'en-US';
@@ -29,7 +29,9 @@ function chatBot(){
         reponse.json()
         .then(data=>{
             BTN_SP.style.display=""
+            //this bit makes the sound play directly without waiting for the button to be clicked on
             // BTN_SP.addEventListener("click",texteToSpeech(data.msg)) 
+            //this only plays when the button is clicked on
             BTN_SP.addEventListener("click", function() {
                 texteToSpeech(data.msg);
             });
